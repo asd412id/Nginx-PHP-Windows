@@ -1,9 +1,9 @@
 This snapshot was automatically generated on
-Tue, 24 Sep 2019 13:01:29 +0000
+Tue, 19 Nov 2019 14:54:21 +0000
 
-Version: 7.3.10
+Version: 7.3.12
 Branch: HEAD
-Build: C:\php-snap-build\php73\vc15\x64\obj\Release_TS
+Build: C:\php-snap-build\php73\vc15\x64\obj\Release
 
 Built-in Extensions
 ===========================
