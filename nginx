@@ -42,6 +42,7 @@ then
 	  
 	  ssl_certificate /ssl/ssl.crt/server.crt;
 	  ssl_certificate_key /ssl/ssl.key/server.key;
+	  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
 	  index index.php index.html;
 	  root ${2:-/html};
