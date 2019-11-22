@@ -11,5 +11,5 @@ For optimal, use bash or git-bash to execute nginx file inside directory with sy
 - [start|stop]: *Start or stop nginx+php server*
 - [root_directory]: *set default path document root directory. Use quote symbol to input document path, e.g. __'C:\xampp\htdocs'__*
 - [port]: *Set port. Default is 80*
-- [max_upstream_server]: *Max upstream php-cgi.exe as nginx backend to use. Default is 5*
+- [max_upstream_server]: *Max upstream server of php-cgi.exe as nginx backend to use. Default is 5*
 - [server_name]: *Set server name aka domain name of project. You must set dns to use custom server_name beside __localhost__ in your host file. Default server_name is localhost*
