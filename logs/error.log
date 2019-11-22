@@ -1,2 +1,0 @@
-2019/11/22 13:46:31 [emerg] 2468#3664: unknown directive "least-conn" in ./conf/upstream.conf:1
-2019/11/22 14:27:12 [emerg] 4388#5272: SSL_CTX_use_PrivateKey(".//ssl/ssl.key/server.key") failed (SSL: error:0B080074:x509 certificate routines:X509_check_private_key:key values mismatch)
