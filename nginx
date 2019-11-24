@@ -28,7 +28,7 @@ then
 	  location ~* \\.php\$ {
 		try_files \$uri =404;
 		fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
-		fastcgi_pass backend;
+		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_index index.php;
 		include fastcgi_params;
 		fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -58,7 +58,7 @@ then
 	  location ~* \\.php\$ {
 		try_files \$uri =404;
 		fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
-		fastcgi_pass backend;
+		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_index index.php;
 		include fastcgi_params;
 		fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
@@ -68,21 +68,7 @@ then
 	}
 	";
 	
-	
-	f='upstream backend{least_conn;';
-	for i in $(seq 0 $x);
-	do
-		p="900${i}";
-		if [ $i -gt 9 ]
-		then
-			p="90${i}";
-		fi
-		f="${f} server 127.0.0.1:${p} max_fails=3 fail_timeout=3s;";
-	done
-	f="${f} }"
-	
 	echo $sblock > ./sites-enabled/default.conf
-	echo $f > ./conf/upstream.conf
 	./$1.bat $x
 	echo "NginX Server started!"
 elif [ "$1" == "stop" ]
