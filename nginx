@@ -10,7 +10,13 @@ then
 	then
 		x=0;
 	fi
-	sblock="server {
+	sblock="
+	upstream backend{
+		server 127.0.0.1:9000;
+		keepalive_requests 300;
+		least_conn;
+	}
+	server {
 	  listen ${3:-80} default_server;
 	  listen [::]:${3:-80} default_server;
 
@@ -28,12 +34,12 @@ then
 	  location ~* \\.php\$ {
 		try_files \$uri =404;
 		fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
-		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_pass backend;
 		fastcgi_index index.php;
 		include fastcgi_params;
 		fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
 		fastcgi_param PATH_INFO \$fastcgi_path_info;
-		fastcgi_read_timeout 300;
+		fastcgi_read_timeout 300s;
 	  }
 	}
 	server {
