@@ -27,7 +27,6 @@ then
 	  server_name ${5:-localhost};
 
 	  location / {
-		index index.html;
 		try_files \$uri \$uri/ /index.php?\$args;
 	  }
 
