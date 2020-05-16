@@ -10,6 +10,7 @@ then
 	then
 		x=0;
 	fi
+	root=${2//\\//}
 	sblock="
 	upstream backend{
 		server 127.0.0.1:9000;
@@ -21,18 +22,19 @@ then
 	  listen [::]:${3:-80} default_server;
 
 	  index index.php index.html;
-	  root ${2:-/html};
+	  root ${root:-/html};
 
 	  server_name ${5:-localhost};
 
 	  location / {
+		index index.html;
 		try_files \$uri \$uri/ /index.php?\$args;
 	  }
 
 	  client_max_body_size 128M;
 
 	  location ~* \\.php\$ {
-		try_files \$uri =404;
+		include fastcgi.conf;
 		fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
 		fastcgi_pass backend;
 		fastcgi_index index.php;
@@ -51,25 +53,26 @@ then
 	  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 
 	  index index.php index.html;
-	  root ${2:-/html};
+	  root ${root:-/html};
 
 	  server_name ${5:-localhost};
 
 	  location / {
+		index index.html;
 		try_files \$uri \$uri/ /index.php?\$args;
 	  }
 
 	  client_max_body_size 128M;
 
 	  location ~* \\.php\$ {
-		try_files \$uri =404;
+		include fastcgi.conf;
 		fastcgi_split_path_info ^(.+\\.php)(/.+)\$;
-		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_pass backend;
 		fastcgi_index index.php;
 		include fastcgi_params;
 		fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
 		fastcgi_param PATH_INFO \$fastcgi_path_info;
-		fastcgi_read_timeout 300;
+		fastcgi_read_timeout 300s;
 	  }
 	}
 	";
