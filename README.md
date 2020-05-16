@@ -6,9 +6,17 @@ For optimal, use bash or git-bash to execute nginx file inside directory with sy
 
 **nginx [start|stop] [root_directory|default: '/html'|string] [port|default: 80|number] [max_upstream_server|default: 5|number] [server_name|default: localhost|string]**
 
+###Usage:###
+**nginx create [root_directory|default: '/html'|<string>] [port|default: 80|<number>] [server_name|default: localhost|<string>]**
+**nginx destroy [server_name|--all for destroy all]**
+**nginx start [max_upstream_server|default: 5|<number>]**
+**nginx stop**
+
+**Important: Make sure to execute \"nginx stop\" before run create or destroy command!**
+
 ### Syntax Description
 - nginx : *nginx file executable*
-- [start|stop]: *Start or stop nginx+php server*
+- [start|stop|create|destroy]: *Start, stop nginx+php server and create or delete server block by name*
 - [root_directory]: *set default path document root directory. Use quote symbol to input document path, e.g. __'C:\xampp\htdocs'__*
 - [port]: *Set port. Default is 80*
 - [max_upstream_server]: *Max upstream server of php-cgi.exe as nginx backend to use. Default is 5*
