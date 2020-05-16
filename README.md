@@ -22,3 +22,6 @@ For optimal, use bash or git-bash to execute nginx file inside directory with sy
 
 ### Optionals
 You can add more server block with create new server block file inside sites-enabled folder.
+
+## Important
+*PHP may not working before make configuration extension directory in __php.ini__. Open file php.ini and find extension_dir then change value to php's ext folder path. __e.g. extension_dir = "C:\base_path\php\ext"__*
