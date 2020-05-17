@@ -5,7 +5,7 @@ Configured nginx with php-cgi for Windows.
 For optimal, use bash or git-bash to execute nginx file inside directory with syntax:  
 
 ### Usage
-- **nginx create [root_directory|default: '/html'] [port|default: 80] [server_name|default: localhost]**
+- **nginx create [root_directory|default: '/html'] [block_name|default: default] [port|default: 80] [server_name|default: localhost]**
 - **nginx destroy [server_name|--all for destroy all]**
 - **nginx start [max_upstream_server|default: 5]**
 - **nginx stop**
