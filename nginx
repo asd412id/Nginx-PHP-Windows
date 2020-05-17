@@ -85,7 +85,7 @@ then
 	";
 	
 	echo $sblock > ./sites-enabled/${3:-default}.conf
-	echo "NginX Server ${3:-default} created!"
+	echo "NginX Server ${3:-default} -> ${5:-localhost}:${4:-80} created!"
 elif [ "$1" == "destroy" ]
 then
 	if [ "$2" == "--all" ]
