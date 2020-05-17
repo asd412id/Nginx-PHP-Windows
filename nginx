@@ -19,7 +19,7 @@ then
 	";
 	
 	echo $sblock > ./sites-enabled/upstream.conf
-	./$1.bat $x
+	./$1.exe $x
 	echo "NginX Server started!"
 elif [ "$1" == "create" ]
 then
@@ -104,7 +104,7 @@ then
 	fi
 elif [ "$1" == "stop" ]
 then
-	./$1.bat
+	./$1.exe
 	echo "NginX Server stopped!"
 else
 	echo "Usage:";
