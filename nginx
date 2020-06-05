@@ -61,8 +61,6 @@ then
 
 	  index index.php index.html;
 	  root ${root:-/html};
-	  
-	  server_name ${5:-localhost};
 
 	  location / {
 		index index.html;
@@ -86,18 +84,18 @@ then
 	
 	echo $sblock > ./sites-enabled/${3:-default}.conf
 	echo "NginX Server ${3:-default} -> ${5:-localhost}:${4:-80} created!"
-elif [ "$1" == "destroy" ]
+elif [ "$1" == "delete" ]
 then
 	if [ "$2" == "--all" ]
 	then
 		rm ./sites-enabled/*.conf
-		echo "NginX Server blocks destroyed!"
+		echo "NginX Server blocks deleted!"
 	else
 		file=./sites-enabled/$2.conf
 		if [ -f $file ]
 		then
 			rm $file
-			echo "NginX Server $2 destroyed!"
+			echo "NginX Server $2 deleted!"
 		else
 			echo "Server Block not Found!"
 		fi
@@ -106,10 +104,14 @@ elif [ "$1" == "stop" ]
 then
 	./$1.exe
 	echo "NginX Server stopped!"
+elif [ "$1" == "lists" ]
+then
+	echo "Server Block Lists:"
+	ls ./sites-enabled/ | grep conf
 else
 	echo "Usage:";
 	echo "- create [root_directory|default: '/html'|<string>] [block_name|default: default|<string>] [port|default: 80|<number>] [server_name|default: localhost|<string>]";
-	echo "- destroy [server_name|--all for destroy all]";
+	echo "- delete [server_name|--all for delete all]";
 	echo "- start [max_upstream_server|default: 5|<number>]";
 	echo "- stop";
 	echo "Important: Make sure to execute \"nginx stop\" before run create or destroy command!";
