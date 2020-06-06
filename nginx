@@ -13,6 +13,14 @@ then
 	
 	./$1.exe $x
 	echo "NginX Server started!"
+elif [ "$1" == "server" ]
+then
+	if [ "$2" == "prod" ]
+	then
+		cp -f ./php/opcache/php-prod.ini ./php/php.ini
+	else
+		cp -f ./php/opcache/php-dev.ini ./php/php.ini
+	fi
 elif [ "$1" == "create" ]
 then
 	root=${2//\\//}
