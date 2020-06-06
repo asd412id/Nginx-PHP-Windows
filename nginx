@@ -18,8 +18,10 @@ then
 	if [ "$2" == "prod" ]
 	then
 		cp -f ./php/opcache/php-prod.ini ./php/php.ini
+		echo "Server in production mode"
 	else
 		cp -f ./php/opcache/php-dev.ini ./php/php.ini
+		echo "Server in development mode"
 	fi
 elif [ "$1" == "create" ]
 then
