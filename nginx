@@ -65,7 +65,7 @@ then
 	  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 	}";
 	
-	echo $sblock > ./sites-enabled/${3:-default}.conf
+	echo $sblock > ./sites-enabled/${3:-default}-${4:-8080}.conf
 	echo "NginX Server ${3:-default} -> ${5:-localhost}:${4:-80} created!"
 elif [ "$1" == "delete" ]
 then
