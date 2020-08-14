@@ -89,7 +89,6 @@ then
 	echo "NginX Server stopped!"
 elif [ "$1" == "lists" ]
 then
-	echo "Server Block Lists:"
 	ls ./sites-enabled/ | grep conf
 else
 	echo "Usage:";
