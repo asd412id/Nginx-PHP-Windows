@@ -65,7 +65,7 @@ then
 	  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 	}";
 	
-	echo $sblock > ./sites-enabled/${3:-default}-${4:-80}.conf
+	echo $sblock > ./sites-enabled/${3:-default}--${5:-localhost}:${4:-80}.conf
 	echo "NginX Server ${3:-default} -> ${5:-localhost}:${4:-80} created!"
 elif [ "$1" == "delete" ]
 then
@@ -74,7 +74,7 @@ then
 		rm ./sites-enabled/*.conf
 		echo "NginX Server blocks deleted!"
 	else
-		file=./sites-enabled/$2.conf
+		file=./sites-enabled/$2--*.conf
 		if [ -f $file ]
 		then
 			rm $file
@@ -89,7 +89,7 @@ then
 	echo "NginX Server stopped!"
 elif [ "$1" == "lists" ]
 then
-	ls ./sites-enabled/ | grep conf
+	ls ./sites-enabled/ | sed -e 's/\.conf$//'
 else
 	echo "Usage:";
 	echo "- create [root_directory|default: '/html'|<string>] [block_name|default: default|<string>] [port|default: 80|<number>] [server_name|default: localhost|<string>]";
