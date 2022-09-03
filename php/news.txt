@@ -1,5 +1,104 @@
 PHP                                                                        NEWS
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+01 Sep 2022, PHP 8.1.10
+
+- Core:
+  . Fixed --CGI-- support of run-tests.php. (cmb)
+  . Fixed incorrect double to long casting in latest clang. (zeriyoshi)
+  . Fixed bug GH-9266 (GC root buffer keeps growing when dtors are present).
+    (Michael Olšavský)
+
+- Date:
+  . Fixed bug GH-8730 (DateTime::diff miscalculation is same time zone of
+    different type). (Derick)
+  . Fixed bug GH-8964 (DateTime object comparison after applying delta less
+    than 1 second). (Derick)
+  . Fixed bug GH-9106: (DateInterval 1.5s added to DateTimeInterface is rounded
+    down since PHP 8.1.0). (Derick)
+  . Fixed bug #81263 (Wrong result from DateTimeImmutable::diff). (Derick)
+
+- DBA:
+  . Fixed LMDB driver memory leak on DB creation failure (Girgias)
+  . Fixed bug GH-9155 (dba_open("non-existing", "c-", "flatfile") segfaults)
+    (cmb)
+
+- IMAP:
+  . Fixed bug GH-9309 (Segfault when connection is used after imap_close()).
+    (cmb)
+
+- Intl:
+  . Fixed IntlDateFormatter::formatObject() parameter type. (Gert de Pagter)
+
+- MBString:
+  . Fixed bug GH-9008 (mb_detect_encoding(): wrong results with null $encodings).
+    (cmb)
+
+- OPcache:
+  . Fixed bug GH-9033 (Loading blacklist file can fail due to negative length).
+    (cmb)
+  . Fixed bug GH-9164 (Segfault in zend_accel_class_hash_copy).
+    (Arnaud, Sergei Turchanov)
+
+- PDO_SQLite:
+  . Fixed bug GH-9032 (SQLite3 authorizer crashes on NULL values). (cmb)
+
+- SQLite3:
+  . Fixed bug GH-9032 (SQLite3 authorizer crashes on NULL values). (cmb)
+
+- Streams:
+  . Fixed bug GH-8472 (The resource returned by stream_socket_accept may have
+    incorrect metadata). (Jakub Zelenka)
+  . Fixed bug GH-8409 (SSL handshake timeout leaves persistent connections
+    hanging). (Jakub Zelenka, Twosee)
+
+04 Aug 2022, PHP 8.1.9
+
+- CLI:
+  . Fixed potential overflow for the builtin server via the PHP_CLI_SERVER_WORKERS
+    environment variable. (yiyuaner)
+
+- Core:
+  . Fixed bug GH-8923 (error_log on Windows can hold the file write lock). (cmb)
+  . Fixed bug GH-8995 (WeakMap object reference offset causing TypeError).
+    (Tobias Bachert)
+
+- CLI:
+  . Fixed GH-8952 (Intentionally closing std handles no longer possible).
+    (Arnaud, cmb)
+
+- Date:
+  . Fixed bug #80047 (DatePeriod doesn't warn with custom DateTimeImmutable).
+    (Derick)
+
+- FPM:
+  . Fixed zlog message prepend, free on incorrect address. (Heiko Weber)
+  . Fixed possible double free on configuration loading failure. (Heiko Weber).
+
+- GD:
+  . Fixed bug GH-8848 (imagecopyresized() error refers to the wrong argument).
+    (cmb)
+
+- Intl:
+  . Fixed build for ICU 69.x and onwards. (David Carlier)
+
+- OPcache:
+  . Fixed bug GH-8847 (PHP hanging infinitly at 100% cpu when check php
+    syntaxe of a valid file). (Dmitry)
+  . Fixed bug GH-8030 (Segfault with JIT and large match/switch statements).
+    (Arnaud)
+
+- Reflection:
+  . Fixed bug GH-8943 (Fixed Reflection::getModifiersNames() with readonly
+    modifier). (Pierrick)
+  . Fixed bug GH-8982 (Attribute with TARGET_METHOD is rejected on fake
+    closure of method). (ilutov)
+
+- Standard:
+  . Fixed the crypt_sha256/512 api build with clang > 12. (David Carlier)
+  . Uses CCRandomGenerateBytes instead of arc4random_buf on macOs. (David Carlier).
+  . Fixed bug GH-9017 (php_stream_sock_open_from_socket could return NULL).
+    (Heiko Weber)
+
 07 Jul 2022, PHP 8.1.8
 
 - Core:
@@ -10,6 +109,8 @@ PHP                                                                        NEWS
   . Fixed bug GH-8655 (Casting an object to array does not unwrap refcount=1
     references). (Nicolas Grekas)
   . Fixed potential use after free in php_binary_init(). (Heiko Weber)
+  . Fixed bug GH-7942 (Indirect mutation of readonly properties through
+    references). (ilutov)
 
 - CLI:
   . Fixed GH-8827 (Intentionally closing std handles no longer possible). (cmb)
@@ -62,9 +163,6 @@ PHP                                                                        NEWS
 
 - PDO_ODBC:
   . Fixed handling of single-key connection strings. (Calvin Buckley)
-
-- SPL:
-  . Fixed bug GH-8563 (Different results for seek() on SplFileObject and SplTempFileObject). (Girgias)
 
 - Zip:
   . Fixed bug GH-8781 (ZipArchive::close deletes zip file without updating stat
